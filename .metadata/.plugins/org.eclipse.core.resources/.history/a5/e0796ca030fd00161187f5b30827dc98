@@ -1,0 +1,78 @@
+package server;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.SocketAddress;
+
+public class ClientHandler implements Runnable
+{
+	private ObjectInputStream input = null;
+	private ObjectOutputStream output = null;
+	private String message = "";
+	private Socket connection;
+	private int messageNum;
+	
+	public ClientHandler(Socket connection)
+	{
+		this.connection = connection;
+	}
+	
+	@Override
+	public void run() 
+	{
+		try
+		{
+			SocketAddress remoteAddress = connection.getRemoteSocketAddress();
+			String remote = remoteAddress.toString();
+			input = new ObjectInputStream(connection.getInputStream());
+			output = new ObjectOutputStream(connection.getOutputStream());
+			do
+			{
+				message = (String) input.readObject();
+				output.writeObject("From:" + remote + ">" + message);
+				output.writeObject(messageNum ++ + "Output> " + message);
+				output.flush();
+			} while(message != null);
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		catch(ClassNotFoundException ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if(input != null)
+					input.close();
+			}
+			catch(IOException ioException)
+			{
+				ioException.printStackTrace();
+			}
+			try
+			{
+				if(output != null)
+					output.close();
+			}
+			catch(IOException ioException)
+			{	
+				ioException.printStackTrace();
+			}
+			try
+			{
+				if(connection != null)
+					connection.close();
+			}
+			catch(IOException ioException)
+			{
+				ioException.printStackTrace();
+			}
+		}
+	}
+}

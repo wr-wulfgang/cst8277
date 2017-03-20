@@ -1,0 +1,78 @@
+package server;
+
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.ServerSocket;
+
+/**
+ * @author Todd
+ */
+public class EchoServer 
+{
+	private Socket connection;
+	private ServerSocket server;
+	private ObjectInputStream input;
+	private ObjectOutputStream output;
+	private String message = "";
+	private int messageNum;
+	private int portNum;
+	public static final int DEFAULT_PORT = 8081;
+	
+	public EchoServer(int portNum)
+	{
+		this.portNum = portNum;
+	}
+	
+	public static void main(String[] args)
+	{
+		if(args.length > 0)
+			(new EchoServer(Integer.parseInt(args[0]))).runServer();
+		else
+			(new EchoServer(DEFAULT_PORT)).runServer();
+	}
+	
+	public void runServer()
+	{
+		System.out.println("Echo Server Started...");
+		try
+		{
+			while(true)
+			{
+				server = new ServerSocket(portNum);
+				connection = server.accept();
+				output = new ObjectOutputStream(connection.getOutputStream());
+				input = new ObjectInputStream(connection.getInputStream());
+				do
+				{
+					try
+					{
+						message = (String) input.readObject();
+					} 
+					catch(EOFException e)
+					{
+						message = null;
+					}
+					if(message != null)
+					{
+						output.writeObject(messageNum++ + " FromServer> " + message);
+						output.flush();
+					}
+				} while(message != null);
+				input.close();
+				output.close();
+				connection.close();
+			}
+		}
+		catch(IOException exception)
+		{
+			exception.printStackTrace();
+		}
+		catch(ClassNotFoundException exception)
+		{
+			exception.printStackTrace();
+		}
+	}
+}

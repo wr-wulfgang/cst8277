@@ -1,0 +1,71 @@
+package server;
+
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.net.ServerSocket;
+
+/**
+ * @author Todd
+ */
+public class EchoServer 
+{
+	private Socket connection;
+	private ServerSocket server;
+	private ObjectInputStream input;
+	private ObjectOutputStream output;
+	private String message = "";
+	private int messageNum;
+	private int portNum;
+	public static final int DEFAULT_PORT = 8081;
+	
+	public static ExecutorService threadExecutor = Executors.newCachedThreadPool();
+	
+	public EchoServer(int portNum)
+	{
+		this.portNum = portNum;
+	}
+	
+	public void contactClient(final Socket connection)
+	{
+		ClientHandler handler = new ClientHandler(connection);
+		threadExecutor.execute(handler);
+	}
+	
+	public void runServer()
+	{
+		try
+		{
+			server = new ServerSocket(portNum);
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		System.out.println("Echo Server Started...");
+		while(true)
+		{
+			try
+			{
+				connection = server.accept();
+				contactClient(connection);
+			}
+			catch(IOException exception)
+			{
+				exception.printStackTrace();
+			}
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		if(args.length > 0)
+			(new EchoServer(Integer.parseInt(args[0]))).runServer();
+		else
+			(new EchoServer(DEFAULT_PORT)).runServer();
+	}
+}

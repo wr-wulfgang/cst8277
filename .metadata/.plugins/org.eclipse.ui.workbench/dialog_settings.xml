@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="632" key="DIALOG_X_ORIGIN"/>
+		<item value="132" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.internal.QuickAccess">
+		<item value="-1" key="dialogHeight"/>
+		<item value="-1" key="dialogWidth"/>
+		<list key="textEntries">
+		</list>
+		<list key="orderedElements">
+		</list>
+		<list key="orderedProviders">
+		</list>
+		<list key="textArray">
+		</list>
+	</section>
+	<section name="InstallationDialogSettings">
+		<item value="934" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="982" key="DIALOG_HEIGHT"/>
+		<item value="502" key="DIALOG_X_ORIGIN"/>
+		<item value="9" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.ui.wizards.import.ZipFile" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+	<section name="ZipFileImportWizard">
+		<item value="false" key="WizardZipFileResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
+		<list key="WizardZipFileResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="D:\Google Drive\Algonquin College\2017W\Enterprise Application Programming\Learning Material\Week 6\CST8277 Week 6 Hibernate Demos (Updated).zip"/>
+			<item value="D:\Google Drive\Algonquin College\2017W\Enterprise Application Programming\Learning Material\Week 4\CST8277 Week 4 Examples.zip"/>
+			<item value="D:\Google Drive\Algonquin College\2017W\Enterprise Application Programming\Learning Material\Week 3\CST8277 Week 3 Demo.zip"/>
+			<item value="D:\Google Drive\Algonquin College\2017W\Enterprise Application Programming\Learning Material\Week 1-2\CST8277 Week 1-2 Example Code.zip"/>
+			<item value="D:\Google Drive\Algonquin College\2017W\Enterprise Application Programming\Assignments\Assignment 1\CST8277 Assignment 1 Starter Code.zip"/>
+			<item value="D:\Google Drive\Algonquin College\2017W\Enterprise Application Programming\Learning Material\Week 1-2\Multi-threading Lecture Code.zip"/>
+			<item value="C:\Users\William\Google Drive\Algonquin College\2017W\Enterprise Application Programming\Learning Material\Week 1-2\Multi-threading Lecture Code.zip"/>
+			<item value="C:\Users\William\Google Drive\Algonquin College\2017 Winter\Enterprise Application Programming\Assignments\Assignment 1\CST8277 Assignment 1 Starter Code.zip"/>
+		</list>
+	</section>
+</section>
